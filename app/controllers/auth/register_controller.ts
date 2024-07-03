@@ -1,16 +1,23 @@
+import vine from "@vinejs/vine";
 import User from "#models/user";
-import { registerValidator } from "#validators/auth";
 import type { HttpContext } from "@adonisjs/core/http";
 
 export default class RegisterController {
-  async show({ inertia }: HttpContext) {
+  static validator = vine.compile(
+    vine.object({
+      email: vine.string().email(),
+      password: vine.string(),
+    }),
+  );
+
+  render({ inertia }: HttpContext) {
     return inertia.render("auth/register");
   }
 
-  async store({ request, response, auth }: HttpContext) {
-    const data = await request.validateUsing(registerValidator);
-    const user = await User.create(data);
+  async execute({ auth, request, response }: HttpContext) {
+    const data = await request.validateUsing(RegisterController.validator);
 
+    const user = await User.create(data);
     await auth.use("web").login(user);
 
     return response.redirect().toPath("/");

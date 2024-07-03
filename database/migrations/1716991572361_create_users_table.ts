@@ -9,12 +9,10 @@ export default class extends BaseSchema {
         .uuid("id")
         .primary()
         .defaultTo(this.db.rawQuery("gen_random_uuid()").knexQuery);
-
-      table.string("email").notNullable().unique();
-      table.string("password").notNullable();
-
       table.timestamp("created_at").notNullable();
       table.timestamp("updated_at").nullable();
+      table.string("email").notNullable().unique();
+      table.string("password").notNullable();
     });
   }
 
