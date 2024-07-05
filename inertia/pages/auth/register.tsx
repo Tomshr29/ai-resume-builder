@@ -2,17 +2,24 @@ import { useForm } from "@inertiajs/react";
 import type { FormEvent } from "react";
 
 export default function RegisterPage() {
-  const { data, setData, post, processing, errors } = useForm({
+  const { errors, post, processing, data, setData } = useForm({
     email: "",
     password: "",
   });
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  function submit(e: FormEvent) {
+    e.preventDefault();
+
     if (processing) {
       return;
     }
-    e.preventDefault();
-    post("/register");
+
+    post("/register"),
+      {
+        onFinish() {
+          setData("password", "");
+        },
+      };
   }
 
   return (

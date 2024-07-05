@@ -1,5 +1,5 @@
 import { createContext } from "react";
 
-const CVInfoContext = createContext();
+const CVInfoContext = createContext("");
 
 export default CVInfoContext;

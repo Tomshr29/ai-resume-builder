@@ -7,21 +7,28 @@ import {
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { useForm } from "@inertiajs/react";
+import type { FormEvent } from "react";
 
 function AddResume() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { data, setData, post, processing } = useForm({
+  const { post, processing, data, setData } = useForm({
     title: "",
   });
+  const [isOpen, setIsOpen] = useState(false);
 
-  function submit(e: React.FormEvent<HTMLFormElement>) {
+  function submit(e: FormEvent) {
     e.preventDefault();
-    post("/addResume", {
-      onSuccess: () => {
-        setIsOpen(false);
-        setData("title", "");
-      },
-    });
+
+    if (processing) {
+      return;
+    }
+
+    post("/addResume"),
+      {
+        onFinish() {
+          setData("title", "");
+          setIsOpen(false);
+        },
+      };
   }
 
   return (
@@ -45,6 +52,8 @@ function AddResume() {
               <Description>
                 <p>Add a title for your new resume</p>
                 <input
+                  id="title"
+                  name="title"
                   type="text"
                   value={data.title}
                   onChange={(e) => setData("title", e.target.value)}

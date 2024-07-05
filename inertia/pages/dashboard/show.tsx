@@ -4,15 +4,19 @@ import FormSection from "./components/FormSection";
 import ResumePreview from "./components/ResumePreview";
 import { useState } from "react";
 import CVInfoContext from "~/context/CVContext";
+import Post from "#models/post";
 
-function EditResume(props: InferPageProps<AddresuemsController, "show">) {
+interface Props {
+  post: Post[];
+}
+
+export default function EditResume(props: Props) {
   const { post } = props;
   const [cvInfo, setCvInfo] = useState({
     firstName: "",
     lastName: "",
   });
   return (
-    // @ts-ignore
     <CVInfoContext.Provider value={{ cvInfo, setCvInfo }}>
       <div className="grid grid-cols-1 gap-10 p-10 md:grid-cols-2">
         <FormSection post={post} />
@@ -21,5 +25,3 @@ function EditResume(props: InferPageProps<AddresuemsController, "show">) {
     </CVInfoContext.Provider>
   );
 }
-
-export default EditResume;

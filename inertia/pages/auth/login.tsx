@@ -2,17 +2,18 @@ import { useForm } from "@inertiajs/react";
 import type { FormEvent } from "react";
 
 export default function LoginPage() {
-  const { data, setData, post, processing, errors } = useForm({
+  const { errors, post, processing, data, setData } = useForm({
     email: "",
     password: "",
   });
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  function submit(e: FormEvent) {
     e.preventDefault();
 
     if (processing) {
       return;
     }
+
     post("/login"),
       {
         onFinish() {
@@ -39,6 +40,7 @@ export default function LoginPage() {
               <div className="mt-2">
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   value={data.email}
                   onChange={(e) => setData("email", e.target.value)}
@@ -68,6 +70,7 @@ export default function LoginPage() {
               <div className="mt-2">
                 <input
                   id="password"
+                  name="password"
                   type="password"
                   value={data.password}
                   onChange={(e) => setData("password", e.target.value)}

@@ -5,7 +5,7 @@ export function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Nav />
-      <main className="">{children}</main>
+      <main className="p-10">{children}</main>
     </div>
   );
 }

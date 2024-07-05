@@ -33,7 +33,7 @@ router
 
 router
   .group(() => {
-    router.delete("logout", [LogoutController]).as("auth.logout");
+    router.delete("logout", [LogoutController, "execute"]).as("auth.logout");
   })
   .middleware([middleware.auth()]);
 
