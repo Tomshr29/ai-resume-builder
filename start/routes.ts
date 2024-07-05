@@ -12,8 +12,7 @@ import { middleware } from "./kernel.js";
 const UpdatePostsController = () =>
   import("#controllers/update_posts_controller");
 
-const DashboardController = () =>
-  import("#controllers/auth/dashboard_controller");
+const DashboardController = () => import("#controllers/dashboard_controller");
 const LoginController = () => import("#controllers/auth/login_controller");
 const RegisterController = () =>
   import("#controllers/auth/register_controller");
@@ -24,17 +23,17 @@ router.get("/dashboard", [DashboardController, "index"]).as("dashboard.index");
 
 router
   .group(() => {
-    router.get("login", [LoginController, "show"]).as("auth.login");
-    router.post("login", [LoginController, "store"]);
+    router.get("login", [LoginController, "render"]).as("auth.login");
+    router.post("login", [LoginController, "execute"]);
 
-    router.get("register", [RegisterController, "show"]).as("auth.register");
-    router.post("register", [RegisterController, "store"]);
+    router.get("register", [RegisterController, "render"]).as("auth.register");
+    router.post("register", [RegisterController, "execute"]);
   })
   .middleware([middleware.guest()]);
 
 router
   .group(() => {
-    router.delete("logout", [LogoutController, "handle"]).as("auth.logout");
+    router.delete("logout", [LogoutController]).as("auth.logout");
   })
   .middleware([middleware.auth()]);
 
