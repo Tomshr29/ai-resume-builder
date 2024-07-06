@@ -1,26 +1,24 @@
-import { useForm, useRemember } from "@inertiajs/react";
-import { ChangeEvent, useContext, useEffect, type FormEvent } from "react";
+import { Input } from "../../../../../components/ui/input";
+import { Label } from "../../../../../components/ui/label";
+import { useForm } from "@inertiajs/react";
+import { ChangeEvent, useContext, useEffect } from "react";
 import CVInfoContext from "~/context/CVContext";
+import type { FormEvent } from "react";
 
 export default function PersonalDetail({ post }) {
   const { cvInfo, setCvInfo } = useContext(CVInfoContext);
   const form = useForm({
+    jobTitle: post?.jobTitle || "",
     firstName: post?.firstName || "",
     lastName: post?.lastName || "",
-  });
-
-  const [formState, setFormState] = useRemember({
-    firstName: form.data.firstName || "",
-    lastName: form.data.lastName || "",
+    email: post?.email || "",
+    phone: post?.phone || "",
+    address: post?.address || "",
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     form.setData(name, value);
-    setFormState((prevFormState) => ({
-      ...prevFormState,
-      [name]: value,
-    }));
     setCvInfo((prevInfo) => ({
       ...prevInfo,
       [name]: value,
@@ -28,58 +26,100 @@ export default function PersonalDetail({ post }) {
   }
 
   useEffect(() => {
-    // Met à jour le contexte CVInfoContext lorsqu'un post est chargé
     setCvInfo({
+      jobTitle: post?.jobTitle || "",
       firstName: post?.firstName || "",
       lastName: post?.lastName || "",
+      email: post?.email || "",
+      phone: post?.phone || "",
+      address: post?.address || "",
     });
   }, [post, setCvInfo]);
 
-  function submit(e: FormEvent<HTMLFormElement>) {
+  function submit(e: FormEvent) {
     e.preventDefault();
 
     form.put(`/updateResume/${post.id}`, {
-      onSuccess: () => {
-        alert("Saved");
-      },
       data: form.data,
     });
   }
 
   return (
     <div className="mt-10 rounded-lg border-t-4 border-t-blue-300 p-5 shadow-lg">
-      <h2 className="text-lg font-bold">Personal Detail</h2>
-      <p>Get Started with the basic information</p>
-
-      {JSON.stringify(form.data)}
+      <h2 className="text-lg font-bold">Your CV heading</h2>
+      <p>How do you want employers to contact you?</p>
 
       <form onSubmit={submit}>
-        <div className="mt-5 grid grid-cols-1 gap-3">
-          <div>
-            <label className="text-sm">First Name</label>
-            <input
+        <div className="mt-5 grid grid-cols-2 gap-3">
+          <div className="col-span-2">
+            <Label htmlFor="jobTitle">Job Title</Label>
+            <Input
               type="text"
-              name="firstName"
-              defaultValue={post?.firstName}
+              id="jobTitle"
+              name="jobTitle"
+              placeholder="Senior Product Designer"
               onChange={handleChange}
-              className="w-full rounded-lg border-gray-200"
-              required
+              defaultValue={post?.jobTitle}
             />
           </div>
           <div>
-            <label className="text-sm">Last Name</label>
-            <input
+            <Label htmlFor="firstName">First Name</Label>
+            <Input
               type="text"
-              name="lastName"
-              defaultValue={post?.lastName}
+              id="firstName"
+              name="firstName"
+              placeholder="Maksud"
               onChange={handleChange}
-              className="w-full rounded-lg border-gray-200"
-              required
+              defaultValue={post?.firstName}
+            />
+          </div>
+          <div>
+            <Label htmlFor="lastName">Last Name</Label>
+            <Input
+              type="text"
+              id="lastName"
+              name="lastName"
+              placeholder="Alam"
+              onChange={handleChange}
+              defaultValue={post?.lastName}
+            />
+          </div>
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="maksud@musemind.agency"
+              onChange={handleChange}
+              defaultValue={post?.email}
+            />
+          </div>
+          <div>
+            <Label htmlFor="phone">Phone</Label>
+            <Input
+              type="text"
+              name="phone"
+              id="phone"
+              placeholder="+880 123 456 7890"
+              onChange={handleChange}
+              defaultValue={post?.phone}
+            />
+          </div>
+          <div className="col-span-2">
+            <Label htmlFor="address">Address</Label>
+            <Input
+              type="text"
+              name="address"
+              id="address"
+              placeholder="Rampura, Dhaka, Bangladesh"
+              onChange={handleChange}
+              defaultValue={post?.address}
             />
           </div>
         </div>
         <div className="mt-3 flex justify-end">
-          <button type="submit">Save</button>
+          <button type="submit">Save & Next</button>
         </div>
       </form>
     </div>

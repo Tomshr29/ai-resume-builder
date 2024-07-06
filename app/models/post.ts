@@ -23,6 +23,9 @@ export default class Post extends BaseModel {
   declare updatedAt: DateTime;
 
   @column()
+  declare jobTitle: string;
+
+  @column()
   declare firstName: string;
 
   @column()
@@ -30,4 +33,10 @@ export default class Post extends BaseModel {
 
   @column()
   declare email: string;
+
+  @column()
+  declare phone: string;
+
+  @column()
+  declare address: string;
 }

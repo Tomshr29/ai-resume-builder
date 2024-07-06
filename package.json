@@ -74,6 +74,7 @@
     "@headlessui/react": "^2.0.4",
     "@inertiajs/react": "^1.1.0",
     "@poppinss/utils": "^6.7.3",
+    "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@vinejs/vine": "^2.0.0",
     "class-variance-authority": "^0.7.0",

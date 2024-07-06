@@ -1,5 +1,5 @@
 import type { InferPageProps } from "@adonisjs/inertia/types";
-import DashboardController from "#controllers/auth/dashboard_controller";
+import DashboardController from "#controllers/dashboard_controller";
 import AddResume from "~/components/AddResume";
 import { Notebook } from "lucide-react";
 import { Link } from "@inertiajs/react";
