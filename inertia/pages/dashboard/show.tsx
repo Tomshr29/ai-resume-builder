@@ -13,8 +13,12 @@ interface Props {
 export default function EditResume(props: Props) {
   const { post } = props;
   const [cvInfo, setCvInfo] = useState({
+    jobTitle: "",
     firstName: "",
     lastName: "",
+    email: "",
+    phone: "",
+    address: "",
   });
   return (
     <CVInfoContext.Provider value={{ cvInfo, setCvInfo }}>
