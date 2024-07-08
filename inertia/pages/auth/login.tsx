@@ -25,7 +25,7 @@ export default function LoginPage() {
   return (
     <div className="h-full bg-white">
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+        <h1 className="mt-10 text-center text-4xl font-semibold leading-9 tracking-tight text-gray-900">
           Login
         </h1>
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -33,7 +33,7 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm font-medium leading-6 text-gray-900"
+                className="block text-base font-medium leading-6 text-gray-900"
               >
                 Email
               </label>
@@ -54,14 +54,14 @@ export default function LoginPage() {
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
+                  className="block text-base font-medium leading-6 text-gray-900"
                 >
                   Password
                 </label>
-                <div className="text-sm">
+                <div className="text-base">
                   <a
                     href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
                   </a>
@@ -80,12 +80,14 @@ export default function LoginPage() {
               </div>
               {errors.password && <small>{errors.password}</small>}
             </div>
-            <button
-              type="submit"
-              className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              Login
-            </button>
+            <div className="flex items-center justify-center">
+              <button
+                type="submit"
+                className="flex w-1/2 justify-center rounded-full bg-black px-3 py-2.5 font-medium leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                To Login
+              </button>
+            </div>
           </form>
         </div>
       </div>

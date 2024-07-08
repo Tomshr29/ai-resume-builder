@@ -1,5 +1,3 @@
-import type { InferPageProps } from "@adonisjs/inertia/types";
-import AddresuemsController from "#controllers/posts_controller";
 import FormSection from "./components/FormSection";
 import ResumePreview from "./components/ResumePreview";
 import { useState } from "react";
