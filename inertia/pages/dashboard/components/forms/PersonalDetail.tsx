@@ -9,16 +9,34 @@ interface Props {
 
 export default function PersonalDetail(props: Props) {
   const { post } = props;
+  const {
+    jobTitle: initialJobTitle,
+    firstName: initialFirstName,
+    lastName: initialLastName,
+    email: initialEmail,
+    phone: initialPhone,
+    address: initialAddress,
+  } = post;
   const { cv, setCv } = useContext(CVContext);
 
   const { data, setData, put, processing } = useForm({
-    firstName: post.firstName,
-    lastName: post.lastName,
+    jobTitle: initialJobTitle,
+    firstName: initialFirstName,
+    lastName: initialLastName,
+    email: initialEmail,
+    phone: initialPhone,
+    address: initialAddress,
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target as {
-      name: "firstName" | "lastName";
+      name:
+        | "jobTitle"
+        | "firstName"
+        | "lastName"
+        | "email"
+        | "phone"
+        | "address";
       value: string;
     };
     setData(name, value);
@@ -47,6 +65,15 @@ export default function PersonalDetail(props: Props) {
         <div className="mt-5 grid grid-cols-2 gap-3">
           <div className="col-span-2">
             <div>
+              <label htmlFor="jobTitle">Job Title</label>
+              <input
+                name="jobTitle"
+                className="border"
+                defaultValue={data.jobTitle}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
               <label htmlFor="firstName">First Name</label>
               <input
                 name="firstName"
@@ -61,6 +88,33 @@ export default function PersonalDetail(props: Props) {
                 name="lastName"
                 className="border"
                 defaultValue={data.lastName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="email">Email</label>
+              <input
+                name="email"
+                className="border"
+                defaultValue={data.email}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="phone">Phone</label>
+              <input
+                name="phone"
+                className="border"
+                defaultValue={data.phone}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="address">Address</label>
+              <input
+                name="address"
+                className="border"
+                defaultValue={data.address}
                 onChange={handleChange}
               />
             </div>

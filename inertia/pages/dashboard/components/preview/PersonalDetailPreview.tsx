@@ -8,12 +8,12 @@ function PersonalDetailPreview() {
     return <div>Loading...</div>;
   }
 
-  const { firstName, lastName } = cv;
+  const { jobTitle, firstName, lastName, email, phone, address } = cv;
 
   return (
     <div>
       <h2>
-        {firstName} {lastName}
+        {jobTitle} - {firstName} {lastName} - {email} - {phone} - {address}
       </h2>
     </div>
   );
