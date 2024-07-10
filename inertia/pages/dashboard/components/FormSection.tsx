@@ -1,6 +1,13 @@
+import { Post } from "#types/post";
 import PersonalDetail from "./forms/PersonalDetail";
 
-export default function FormSection({ post }) {
+interface Props {
+  post: Post;
+}
+
+export default function FormSection(props: Props) {
+  const { post } = props;
+
   return (
     <main>
       <div className="flex items-center justify-between"></div>

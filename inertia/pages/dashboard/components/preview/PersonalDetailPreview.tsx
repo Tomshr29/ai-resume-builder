@@ -1,26 +1,20 @@
 import { useContext } from "react";
-import CVInfoContext from "~/context/CVContext";
+import CVContext from "~/context/CVContext";
 
 function PersonalDetailPreview() {
-  const { cvInfo } = useContext(CVInfoContext);
+  const { cv } = useContext(CVContext);
 
-  const jobTitle = cvInfo?.jobTitle ?? "";
-  const firstName = cvInfo?.firstName ?? "";
-  const lastName = cvInfo?.lastName ?? "";
-  const email = cvInfo?.email ?? "";
-  const phone = cvInfo?.phone ?? "";
-  const address = cvInfo?.address ?? "";
+  if (!cv) {
+    return <div>Loading...</div>;
+  }
+
+  const { firstName, lastName } = cv;
 
   return (
     <div>
-      <h2 className="text-center text-xl font-bold">
+      <h2>
         {firstName} {lastName}
       </h2>
-      <h3>{jobTitle}</h3>
-      <p>{email}</p>
-      <span>
-        {phone} - {address}
-      </span>
     </div>
   );
 }

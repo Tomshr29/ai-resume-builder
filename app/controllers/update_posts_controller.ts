@@ -5,12 +5,8 @@ import vine from "@vinejs/vine";
 export default class UpdatePostsController {
   static firstValidator = vine.compile(
     vine.object({
-      jobTitle: vine.string(),
       firstName: vine.string(),
       lastName: vine.string(),
-      email: vine.string().email(),
-      phone: vine.string(),
-      address: vine.string(),
     }),
   );
 

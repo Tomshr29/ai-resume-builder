@@ -1,5 +1,13 @@
-import { createContext } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 
-const CVInfoContext = createContext("");
+interface CVContextType {
+  cv: any;
+  setCv: Dispatch<SetStateAction<any>>;
+}
 
-export default CVInfoContext;
+const CVContext = createContext<CVContextType>({
+  cv: null,
+  setCv: () => {},
+});
+
+export default CVContext;

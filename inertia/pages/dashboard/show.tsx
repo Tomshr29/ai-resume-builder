@@ -1,29 +1,28 @@
+import type { Post } from "#types/post";
 import FormSection from "./components/FormSection";
 import ResumePreview from "./components/ResumePreview";
-import { useState } from "react";
-import CVInfoContext from "~/context/CVContext";
-import Post from "#models/post";
+import { useEffect, useState } from "react";
+import CVContext from "~/context/CVContext";
 
 interface Props {
-  post: Post[];
+  post: Post;
 }
 
 export default function EditResume(props: Props) {
   const { post } = props;
-  const [cvInfo, setCvInfo] = useState({
-    jobTitle: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    address: "",
-  });
+
+  const [cv, setCv] = useState<Post | null>(null);
+
+  useEffect(() => {
+    setCv(post);
+  }, [post]);
+
   return (
-    <CVInfoContext.Provider value={{ cvInfo, setCvInfo }}>
+    <CVContext.Provider value={{ cv, setCv }}>
       <div className="grid grid-cols-1 gap-10 p-10 md:grid-cols-2">
         <FormSection post={post} />
-        <ResumePreview post={post} />
+        <ResumePreview />
       </div>
-    </CVInfoContext.Provider>
+    </CVContext.Provider>
   );
 }

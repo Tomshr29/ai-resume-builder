@@ -14,7 +14,7 @@ function Nav() {
           </Link>
           <div className="space-x-2">
             {page.currentUser ? (
-              <>
+              <div className="flex items-center space-x-3">
                 <Link href="/dashboard">
                   {/* @ts-ignore */}
                   <span>{page.currentUser.email}</span>
@@ -23,13 +23,16 @@ function Nav() {
                   href="/logout"
                   method="delete"
                   as="button"
-                  className="text-bandicoot-800 hover:underline"
+                  className="w-full"
                 >
-                  <button className="rounded-[7px] bg-[#00ef81] px-7 py-2 text-[15px] font-bold uppercase italic">
+                  <button
+                    type="submit"
+                    className="rounded-full bg-black px-9 py-2.5 font-medium leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  >
                     Logout
                   </button>
                 </Link>
-              </>
+              </div>
             ) : (
               <>
                 <Link

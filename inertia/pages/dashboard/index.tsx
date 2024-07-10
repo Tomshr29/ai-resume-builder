@@ -1,10 +1,13 @@
-import type { InferPageProps } from "@adonisjs/inertia/types";
-import DashboardController from "#controllers/dashboard_controller";
 import AddResume from "~/components/AddResume";
 import { Notebook } from "lucide-react";
 import { Link } from "@inertiajs/react";
+import { Post } from "#types/post";
 
-function Dashboard(props: InferPageProps<DashboardController, "index">) {
+interface Props {
+  posts: Post[];
+}
+
+function Dashboard(props: Props) {
   const { posts } = props;
   return (
     <div className="p-10 md:px-20 lg:px-32">
