@@ -16,7 +16,7 @@ export default class UpdatePostsController {
 
   static secondValidator = vine.compile(
     vine.object({
-      email: vine.string(),
+      summary: vine.string(),
     }),
   );
 
@@ -31,10 +31,17 @@ export default class UpdatePostsController {
     const post = await Post.findOrFail(postId);
 
     try {
-      const payload = await request.validateUsing(
-        UpdatePostsController.firstValidator,
-      );
-      post.merge(payload);
+      if (request.input("form_step") === "PersonalDetail") {
+        const payload = await request.validateUsing(
+          UpdatePostsController.firstValidator,
+        );
+        post.merge(payload);
+      } else if (request.input("form_step") === "Summary") {
+        const payload = await request.validateUsing(
+          UpdatePostsController.secondValidator,
+        );
+        post.merge(payload);
+      }
 
       await post.save();
       return response.redirect().back();

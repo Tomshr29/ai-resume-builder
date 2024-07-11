@@ -22,6 +22,8 @@ export default class extends BaseSchema {
       table.string("phone");
       table.string("address");
 
+      table.string("summary");
+
       table
         .uuid("user_id")
         .references("id")

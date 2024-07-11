@@ -7,4 +7,5 @@ export interface Post {
   email: string;
   phone: string;
   address: string;
+  summary: string;
 }

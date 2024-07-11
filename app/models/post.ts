@@ -39,4 +39,7 @@ export default class Post extends BaseModel {
 
   @column()
   declare address: string;
+
+  @column()
+  declare summary: string;
 }

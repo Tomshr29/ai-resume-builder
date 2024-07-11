@@ -5,10 +5,11 @@ import CVContext from "~/context/CVContext";
 
 interface Props {
   post: Post;
+  onNextStep: () => void;
 }
 
 export default function PersonalDetail(props: Props) {
-  const { post } = props;
+  const { post, onNextStep } = props;
   const {
     jobTitle: initialJobTitle,
     firstName: initialFirstName,
@@ -26,6 +27,7 @@ export default function PersonalDetail(props: Props) {
     email: initialEmail,
     phone: initialPhone,
     address: initialAddress,
+    form_step: "PersonalDetail",
   });
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -52,6 +54,7 @@ export default function PersonalDetail(props: Props) {
     put(`/updateResume/${post.id}`, {
       onSuccess: (data) => {
         setCv(data);
+        onNextStep();
       },
     });
   }
