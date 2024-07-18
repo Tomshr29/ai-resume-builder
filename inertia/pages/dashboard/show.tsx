@@ -1,4 +1,5 @@
 import type { Post } from "#types/post";
+import FormBreadcrumbs from "./components/FormBreadcrumbs";
 import FormSection from "./components/FormSection";
 import ResumePreview from "./components/ResumePreview";
 import { useEffect, useState } from "react";

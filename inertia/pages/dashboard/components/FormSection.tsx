@@ -3,6 +3,7 @@ import PersonalDetail from "./forms/PersonalDetail";
 import DescriptionForm from "./forms/DescriptionForm";
 import { useRemember } from "@inertiajs/react";
 import { useEffect } from "react";
+import FormBreadcrumbs from "./FormBreadcrumbs";
 
 interface Props {
   post: Post;
@@ -30,8 +31,16 @@ export default function FormSection(props: Props) {
     }
   };
 
+  const handleChangeStep = (step: string) => {
+    setCurrentStep(step as FormStep); // Assurez-vous que step est du type FormStep
+  };
+
   return (
     <main>
+      <FormBreadcrumbs
+        currentStep={currentStep}
+        onChangeStep={handleChangeStep}
+      />
       <div className="flex items-center justify-between"></div>
       {currentStep === FormStep.PersonalDetail && (
         <PersonalDetail post={post} onNextStep={handleNextStep} />

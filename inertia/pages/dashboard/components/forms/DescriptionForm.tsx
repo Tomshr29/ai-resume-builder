@@ -49,7 +49,7 @@ export default function DescriptionForm(props: Props) {
       <form onSubmit={handleSubmit}>
         <textarea
           name="summary"
-          className="border"
+          className="mt-3 h-80 w-full rounded-lg border px-5 py-3"
           defaultValue={data.summary}
           onChange={handleChange}
         />
